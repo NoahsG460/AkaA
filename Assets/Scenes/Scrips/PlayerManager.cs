@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public float moveSpeed = 3f;
+    public float jumpForce = 5f; // ジャンプ力を設定
     public Transform attackPoint;
     public float attackRadius;
     public LayerMask enemyLayer;
@@ -12,6 +13,7 @@ public class PlayerManager : MonoBehaviour
     Animator animator;
     public int hp = 5; // プレイヤーのHPを設定
     int attackPower = 1;
+    private bool isGrounded; // 地面に接地しているかの判定
 
     void Start()
     {
@@ -21,10 +23,17 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        // スペースキーで攻撃
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Jキーで攻撃
+        if (Input.GetKeyDown(KeyCode.J))
         {
             Attack();
+        }
+
+        // スペースキーでジャンプ
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Jump();
+            Debug.Log("ジャンプがトリガーされました");
         }
 
         // プレイヤーの移動
@@ -55,6 +64,21 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log(hitEnemy.gameObject.name + "に攻撃");
             hitEnemy.GetComponent<EnemyManager>().OnDamage(attackPower); // 敵にダメージを与える
+        }
+    }
+
+    void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce); // ジャンプを適用
+        isGrounded = false; // ジャンプ中は地面にいないと判定
+    }
+
+    // 地面に接触しているかを判定
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
         }
     }
 

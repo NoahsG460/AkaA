@@ -137,9 +137,9 @@ GameObject:
   - component: {fileID: 40170429}
   - component: {fileID: 40170431}
   - component: {fileID: 40170430}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -915,9 +915,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2077316299}
   - component: {fileID: 2077316298}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1147,6 +1147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  jumpForce: 5
   attackPoint: {fileID: 1210409551}
   attackRadius: 0.1
   enemyLayer:
