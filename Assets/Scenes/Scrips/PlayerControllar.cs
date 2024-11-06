@@ -1,7 +1,6 @@
-using Photon.Pun;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviourPunCallbacks
+public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 3f;
     private Rigidbody2D rb;
@@ -13,11 +12,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        // このオブジェクトが自分のキャラクターなら操作可能にする
-        if (photonView.IsMine)
-        {
-            Movement();
-        }
+        Movement();
     }
 
     void Movement()
@@ -26,3 +21,4 @@ public class PlayerController : MonoBehaviourPunCallbacks
         rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
     }
 }
+
