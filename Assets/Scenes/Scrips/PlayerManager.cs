@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     public float moveSpeed = 3f;
     public float jumpForce = 5f;
-    [SerializeField] private PolygonCollider2D attackCollider; // インスペクタで設定可能にする
+    [SerializeField] private PolygonCollider2D attackCollider; // インスペクタで設定可能
     public LayerMask enemyLayer;
     private Rigidbody2D rb;
     private Animator animator;
@@ -18,23 +18,23 @@ public class PlayerManager : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        attackCollider.enabled = false; // 攻撃時のみ有効にするため、最初は無効化
+        attackCollider.enabled = false; // 攻撃時のみ有効にするため無効化
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            Attack();
+            Attack(); // Jキーで攻撃
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            Jump();
+            Jump(); // スペースキーでジャンプ
             Debug.Log("ジャンプがトリガーされました");
         }
 
-        Movement();
+        Movement(); // 移動処理
     }
 
     void Movement()
@@ -42,11 +42,11 @@ public class PlayerManager : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         if (x > 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1); // 右向き
         }
         else if (x < 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1); // 左向き
         }
 
         animator.SetFloat("Speed", Mathf.Abs(x));
@@ -69,10 +69,25 @@ public class PlayerManager : MonoBehaviour
         foreach (Collider2D hitEnemy in hitEnemies)
         {
             Debug.Log(hitEnemy.gameObject.name + "に攻撃");
-            hitEnemy.GetComponent<EnemyManager>().OnDamage(attackPower);
+
+            // 以下のダメージ処理をコメントアウトして無効化
+            /*
+            var damageable = hitEnemy.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.OnDamage(attackPower);
+            }
+            */
         }
 
-        attackCollider.enabled = false; // 攻撃後に無効化
+        StartCoroutine(DisableAttackCollider()); // 一定時間後にコライダーを無効化
+    }
+
+
+    IEnumerator DisableAttackCollider()
+    {
+        yield return new WaitForSeconds(0.1f); // 0.1秒後に無効化
+        attackCollider.enabled = false;
     }
 
     void Jump()
