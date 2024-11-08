@@ -1,50 +1,54 @@
-using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviourPun
 {
     public float moveSpeed = 3f;
     public Transform attackPoint;
     public float attackRadius;
     public LayerMask enemyLayer;
-    Rigidbody2D rb;
-    Animator animator;
-    public int hp = 5; // プレイヤーのHPを設定
+    private Rigidbody2D rb;
+    private Animator animator;
+    public int hp = 5;
     int attackPower = 1;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        if (!photonView.IsMine)
+        {
+            enabled = false; // 他プレイヤーの操作を無効化
+        }
     }
 
     void Update()
     {
-        // スペースキーで攻撃
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (photonView.IsMine)
         {
-            Attack();
+            Movement();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Attack();
+            }
         }
-
-        // プレイヤーの移動
-        Movement();
     }
 
     void Movement()
     {
-        float x = Input.GetAxisRaw("Horizontal"); // 横方向の入力 (A/Dキーや矢印キー)
+        float x = Input.GetAxisRaw("Horizontal");
         if (x > 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1); // 右向きにスプライトを反転
+            transform.localScale = new Vector3(-1, 1, 1);
         }
         else if (x < 0)
         {
-            transform.localScale = new Vector3(1, 1, 1); // 左向きにスプライトを反転
+            transform.localScale = new Vector3(1, 1, 1);
         }
 
-        animator.SetFloat("Speed", Mathf.Abs(x)); // アニメーションのスピード設定
-        rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y); // 移動を適用
+        animator.SetFloat("Speed", Mathf.Abs(x));
+        rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
     }
 
     void Attack()
@@ -53,17 +57,14 @@ public class PlayerManager : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
         foreach (Collider2D hitEnemy in hitEnemies)
         {
-            Debug.Log(hitEnemy.gameObject.name + "に攻撃");
-            hitEnemy.GetComponent<EnemyManager>().OnDamage(attackPower); // 敵にダメージを与える
+            hitEnemy.GetComponent<PlayerManager>().OnDamage(attackPower);
         }
     }
 
-    // プレイヤーがダメージを受けたときの処理
     public void OnDamage(int damage)
     {
         hp -= damage;
         animator.SetTrigger("IsHurt");
-        Debug.Log("プレイヤーが" + damage + "ダメージを受けた");
         if (hp <= 0)
         {
             Die();
@@ -72,14 +73,10 @@ public class PlayerManager : MonoBehaviour
 
     void Die()
     {
-        hp = 0;
-        animator.SetTrigger("Die");
         Debug.Log("プレイヤーが死亡しました");
-        // プレイヤーが死んだときの処理（例：リスポーンやゲームオーバー処理）
     }
 
-    // 攻撃範囲をギズモで表示
-    public void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
