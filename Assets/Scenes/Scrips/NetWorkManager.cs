@@ -30,6 +30,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("ルームに参加しました！");
-        SceneManager.LoadScene("GameScene"); // ゲームシーンをロード
+        SceneManager.LoadScene("SampleScene"); // ゲームシーンをロード    }
     }
 }
