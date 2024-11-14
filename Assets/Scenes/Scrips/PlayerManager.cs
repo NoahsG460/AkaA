@@ -14,6 +14,9 @@ public class PlayerManager : MonoBehaviour
     public int hp = 5; // プレイヤーのHPを設定
     int attackPower = 1;
     private bool isGrounded; // 地面に接地しているかの判定
+    public GameObject projectilePrefab;
+    public Transform projectileSpawnPoint;
+
 
     void Start()
     {
@@ -27,6 +30,11 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             Attack();
+        }
+        // Kキーで飛び道具を発射
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ShootProjectile();
         }
 
         // スペースキーでジャンプ
@@ -55,6 +63,20 @@ public class PlayerManager : MonoBehaviour
         animator.SetFloat("Speed", Mathf.Abs(x)); // アニメーションのスピード設定
         rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y); // 移動を適用
     }
+    void ShootProjectile()
+    {
+        GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
+        Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
+
+        if (transform.localScale.x < 0) // 左向きなら左方向に発射
+        {
+            projectileRb.velocity = Vector2.left * 10f; // 適切な速度を設定
+        }
+        else // 右向きなら右方向に発射
+        {
+            projectileRb.velocity = Vector2.right * 10f;
+        }
+    }
 
     void Attack()
     {
@@ -63,6 +85,15 @@ public class PlayerManager : MonoBehaviour
         foreach (Collider2D hitEnemy in hitEnemies)
         {
             Debug.Log(hitEnemy.gameObject.name + "に攻撃");
+
+            // ダメージ処理を一時的にコメントアウト
+            /*
+            var damageable = hitEnemy.GetComponent<IDamageable>();
+            if (damageable != null)
+            {
+                damageable.OnDamage(attackPower);
+            }
+            */
         }
     }
 
@@ -80,6 +111,28 @@ public class PlayerManager : MonoBehaviour
             isGrounded = true;
         }
     }
+
+    // プレイヤーがダメージを受けたときの処理（コメントアウト）
+    /*
+    public void OnDamage(int damage)
+    {
+        hp -= damage;
+        animator.SetTrigger("IsHurt");
+        Debug.Log("プレイヤーが" + damage + "ダメージを受けた");
+        if (hp <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        hp = 0;
+        animator.SetTrigger("Die");
+        Debug.Log("プレイヤーが死亡しました");
+        // プレイヤーが死んだときの処理（例：リスポーンやゲームオーバー処理）
+    }
+    */
 
     // 攻撃範囲をギズモで表示
     public void OnDrawGizmosSelected()
