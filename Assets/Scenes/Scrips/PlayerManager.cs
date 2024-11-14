@@ -63,7 +63,6 @@ public class PlayerManager : MonoBehaviour
         foreach (Collider2D hitEnemy in hitEnemies)
         {
             Debug.Log(hitEnemy.gameObject.name + "に攻撃");
-            hitEnemy.GetComponent<EnemyManager>().OnDamage(attackPower); // 敵にダメージを与える
         }
     }
 
@@ -80,26 +79,6 @@ public class PlayerManager : MonoBehaviour
         {
             isGrounded = true;
         }
-    }
-
-    // プレイヤーがダメージを受けたときの処理
-    public void OnDamage(int damage)
-    {
-        hp -= damage;
-        animator.SetTrigger("IsHurt");
-        Debug.Log("プレイヤーが" + damage + "ダメージを受けた");
-        if (hp <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        hp = 0;
-        animator.SetTrigger("Die");
-        Debug.Log("プレイヤーが死亡しました");
-        // プレイヤーが死んだときの処理（例：リスポーンやゲームオーバー処理）
     }
 
     // 攻撃範囲をギズモで表示
