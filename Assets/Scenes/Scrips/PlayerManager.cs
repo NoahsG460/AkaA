@@ -51,32 +51,36 @@ public class PlayerManager : MonoBehaviour
     void Movement()
     {
         float x = Input.GetAxisRaw("Horizontal"); // 横方向の入力 (A/Dキーや矢印キー)
+
         if (x > 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1); // 右向きにスプライトを反転
+            transform.localScale = new Vector3(1, 1, 1); // 右向き
         }
         else if (x < 0)
         {
-            transform.localScale = new Vector3(1, 1, 1); // 左向きにスプライトを反転
+            transform.localScale = new Vector3(-1, 1, 1); // 左向き
         }
 
         animator.SetFloat("Speed", Mathf.Abs(x)); // アニメーションのスピード設定
         rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y); // 移動を適用
     }
+
     void ShootProjectile()
     {
         GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, Quaternion.identity);
         Rigidbody2D projectileRb = projectile.GetComponent<Rigidbody2D>();
 
-        if (transform.localScale.x < 0) // 左向きなら左方向に発射
+        // プレイヤーの向きに応じて弾の方向を変更
+        if (transform.localScale.x < 0) // 左向き
         {
-            projectileRb.velocity = Vector2.left * 10f; // 適切な速度を設定
+            projectileRb.velocity = Vector2.left * 10f; // 左方向に発射
         }
-        else // 右向きなら右方向に発射
+        else // 右向き
         {
-            projectileRb.velocity = Vector2.right * 10f;
+            projectileRb.velocity = Vector2.right * 10f; // 右方向に発射
         }
     }
+
 
     void Attack()
     {
