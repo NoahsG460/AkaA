@@ -574,8 +574,13 @@ RectTransform:
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 --- !u!1 &761656672
+=======
+
+ !u!1 &761656672
+>>>>>>> 62bb245008f259084958f0703d425d4a4a984a32
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -595,6 +600,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!224 &761656673
 RectTransform:
   m_ObjectHideFlags: 0
@@ -722,6 +728,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SceneName: CharacterSelect
 >>>>>>> 画面遷移
+=======
+
+>>>>>>> 62bb245008f259084958f0703d425d4a4a984a32
 --- !u!1 &918107401
 GameObject:
   m_ObjectHideFlags: 0
