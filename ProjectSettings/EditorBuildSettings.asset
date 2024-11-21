@@ -4,6 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes:
   - enabled: 1
     path: "Assets/Scenes/\u30BF\u30A4\u30C8\u30EB\u753B\u9762.unity"
@@ -26,4 +27,7 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/\u64CD\u4F5C\u8AAC\u660E\u753B\u9762.unity"
     guid: c89a566db6479854e92cb98316ebd606
+=======
+  m_Scenes: []
+>>>>>>> 走りとプレイヤーマネージャー分ける
   m_configObjects: {}
