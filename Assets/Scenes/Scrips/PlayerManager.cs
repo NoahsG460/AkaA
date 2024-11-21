@@ -88,6 +88,10 @@ public class PlayerManager : MonoBehaviour
         hp -= damage;
         animator.SetTrigger("IsHurt");
         Debug.Log("プレイヤーが" + damage + "ダメージを受けた");
+        //HPバーの管理するやつです
+        GameObject director = GameObject.Find("HPDirector");
+        director.GetComponent<HPDirector>().DecreaseHP();
+
         if (hp <= 0)
         {
             Die();
