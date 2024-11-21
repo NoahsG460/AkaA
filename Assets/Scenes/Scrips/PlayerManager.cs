@@ -73,14 +73,6 @@ public class PlayerManager : MonoBehaviour
         isGrounded = false; // ジャンプ中は地面にいないと判定
     }
 
-    // 地面に接触しているかを判定
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-    }
 
     // プレイヤーがダメージを受けたときの処理
     public void OnDamage(int damage)
@@ -101,6 +93,20 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("プレイヤーが死亡しました");
         // プレイヤーが死んだときの処理（例：リスポーンやゲームオーバー処理）
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Me"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+        }
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+
+    }
+
+
 
     // 攻撃範囲をギズモで表示
     public void OnDrawGizmosSelected()

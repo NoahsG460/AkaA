@@ -122,4 +122,12 @@ public class EnemyManager : MonoBehaviour
             Debug.LogWarning("attackPoint‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñBGizmos‚Í•`‰æ‚³‚ê‚Ü‚¹‚ñB");
         }
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Me"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+        }
+    }
+
 }
