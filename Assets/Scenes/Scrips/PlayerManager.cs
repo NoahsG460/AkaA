@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public float moveSpeed = 3f;
+    public float boostedSpeed = 6f; // シフトキーで速くなる速度
     public float jumpForce = 5f; // ジャンプ力を設定
     public Transform attackPoint;
     public float attackRadius;
@@ -14,11 +15,14 @@ public class PlayerManager : MonoBehaviour
     public int hp = 5; // プレイヤーのHPを設定
     int attackPower = 1;
     private bool isGrounded; // 地面に接地しているかの判定
+    private bool isBoosting; // スピードアップ中かを判定
+    private float currentSpeed; // 現在の移動速度
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        currentSpeed = moveSpeed; // 初期速度を設定
     }
 
     void Update()
@@ -36,6 +40,16 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("ジャンプがトリガーされました");
         }
 
+        // シフトキーでスピードアップ（地上にいるときのみ）
+        if (isGrounded && Input.GetKey(KeyCode.LeftShift))
+        {
+            isBoosting = true;
+        }
+        else if (isGrounded)
+        {
+            isBoosting = false;
+        }
+
         // プレイヤーの移動
         Movement();
     }
@@ -43,6 +57,11 @@ public class PlayerManager : MonoBehaviour
     void Movement()
     {
         float x = Input.GetAxisRaw("Horizontal"); // 横方向の入力 (A/Dキーや矢印キー)
+
+        // 現在の速度を計算（地上でのみブースト適用）
+        currentSpeed = isBoosting ? boostedSpeed : moveSpeed;
+
+        // 向きの変更
         if (x > 0)
         {
             transform.localScale = new Vector3(-1, 1, 1); // 右向きにスプライトを反転
@@ -53,7 +72,9 @@ public class PlayerManager : MonoBehaviour
         }
 
         animator.SetFloat("Speed", Mathf.Abs(x)); // アニメーションのスピード設定
-        rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y); // 移動を適用
+
+        // 移動を適用
+        rb.velocity = new Vector2(x * currentSpeed, rb.velocity.y);
     }
 
     void Attack()
@@ -72,7 +93,6 @@ public class PlayerManager : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, jumpForce); // ジャンプを適用
         isGrounded = false; // ジャンプ中は地面にいないと判定
     }
-
 
     // プレイヤーがダメージを受けたときの処理
     public void OnDamage(int damage)
@@ -93,6 +113,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("プレイヤーが死亡しました");
         // プレイヤーが死んだときの処理（例：リスポーンやゲームオーバー処理）
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Me"))
@@ -101,12 +122,9 @@ public class PlayerManager : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
+            isGrounded = true; // 地面に接地
         }
-
     }
-
-
 
     // 攻撃範囲をギズモで表示
     public void OnDrawGizmosSelected()
@@ -115,3 +133,4 @@ public class PlayerManager : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 }
+
