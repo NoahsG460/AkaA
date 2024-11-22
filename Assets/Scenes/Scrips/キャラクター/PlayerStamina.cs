@@ -15,20 +15,35 @@ public class PlayerStamina : MonoBehaviour
 
     public float JumpForce => jumpForce; // ジャンプ力を公開
 
+    public float maxStamina = 100f; // スタミナの最大値
+    private float currentStamina; // 現在のスタミナ値
+    public float staminaDrainRate = 10f; // スタミナ消費速度（毎秒）
+    public float staminaRecoveryRate = 5f; // スタミナ回復速度（毎秒）
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        currentStamina = maxStamina; // スタミナを最大値に設定
     }
 
     void Update()
     {
-        // シフトキーでスピードアップ（地上にいるときのみ）
-        if (IsGrounded && Input.GetKey(KeyCode.LeftShift))
+        // スタミナの回復
+        if (!isBoosting && currentStamina < maxStamina)
+        {
+            currentStamina += staminaRecoveryRate * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+        }
+
+        // シフトキーでスピードアップ（地上にいるとき、スタミナがある場合のみ）
+        if (IsGrounded && Input.GetKey(KeyCode.LeftShift) && currentStamina > 0)
         {
             isBoosting = true;
+            currentStamina -= staminaDrainRate * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
         }
-        else if (IsGrounded)
+        else
         {
             isBoosting = false;
         }
