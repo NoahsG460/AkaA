@@ -1,28 +1,27 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
     public float moveSpeed = 3f;
-    public float boostedSpeed = 6f;
-    public float jumpForce = 5f;
+    public float boostedSpeed = 6f; // シフトキーで速くなる速度
+    public float jumpForce = 5f; // ジャンプ力を設定
     public Transform attackPoint;
-    public BoxCollider2D attackCollider;
-    public float attackRadius;
+    public float attackRadius; // 攻撃の半径
     public LayerMask enemyLayer;
     Rigidbody2D rb;
     Animator animator;
-    public int hp = 5;
+    public int hp = 5; // プレイヤーのHPを設定
     int attackPower = 1;
-    private bool isGrounded;
-    private bool isBoosting;
-    private float currentSpeed;
+    private bool isGrounded; // 地面に接地しているかの判定
+    private bool isBoosting; // スピードアップ中かを判定
+    private float currentSpeed; // 現在の移動速度
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        attackCollider.enabled = false;
     }
 
     void Update()
@@ -35,8 +34,10 @@ public class PlayerManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();
+            Debug.Log("ジャンプがトリガーされました");
         }
 
+        // シフトキーでスピードアップ（地上にいるときのみ）
         if (isGrounded && Input.GetKey(KeyCode.LeftShift))
         {
             isBoosting = true;
@@ -46,14 +47,18 @@ public class PlayerManager : MonoBehaviour
             isBoosting = false;
         }
 
+        // プレイヤーの移動
         Movement();
     }
 
     void Movement()
     {
-        float x = Input.GetAxisRaw("Horizontal");
+        float x = Input.GetAxisRaw("Horizontal"); // 横方向の入力 (A/Dキーや矢印キー)
+
+        // 現在の速度を計算（地上でのみブースト適用）
         currentSpeed = isBoosting ? boostedSpeed : moveSpeed;
 
+        // 向きの変更
         if (x > 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -63,27 +68,24 @@ public class PlayerManager : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
 
-        animator.SetFloat("Speed", Mathf.Abs(x));
+        animator.SetFloat("Speed", Mathf.Abs(x)); // アニメーションのスピード設定
+
+        // 移動を適用
         rb.velocity = new Vector2(x * currentSpeed, rb.velocity.y);
     }
 
     void Attack()
     {
         animator.SetTrigger("IsAttack");
-        attackCollider.enabled = true;
 
-        List<Collider2D> hitEnemies = new List<Collider2D>();
-        ContactFilter2D contactFilter = new ContactFilter2D();
-        contactFilter.SetLayerMask(enemyLayer);
-        Physics2D.OverlapCollider(attackCollider, contactFilter, hitEnemies);
+        // 攻撃範囲内の敵を検出
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
 
         foreach (Collider2D hitEnemy in hitEnemies)
         {
             Debug.Log(hitEnemy.gameObject.name + "に攻撃");
             hitEnemy.GetComponent<EnemyManager>().OnDamage(attackPower);
         }
-
-        attackCollider.enabled = false;
     }
 
     void Jump()
@@ -98,6 +100,7 @@ public class PlayerManager : MonoBehaviour
         animator.SetTrigger("IsHurt");
         Debug.Log("プレイヤーが" + damage + "ダメージを受けた");
 
+        // HPバーを管理するやつです
         GameObject director = GameObject.Find("HPDirector");
         director.GetComponent<HPDirector>().DecreaseHP();
 
@@ -122,21 +125,17 @@ public class PlayerManager : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
+            isGrounded = true; // 地面に接地
         }
     }
 
-    void OnDrawGizmosSelected()
+    // 攻撃範囲をギズモで表示
+    public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        if (attackCollider != null)
+        if (attackPoint != null)
         {
-            // コライダーのワールド座標を計算
-            Vector3 colliderPosition = attackCollider.transform.position + (Vector3)attackCollider.offset;
-            Vector3 colliderSize = attackCollider.size;
-
-            // ギズモでボックスを描画
-            Gizmos.DrawWireCube(colliderPosition, colliderSize);
+            Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
         }
     }
 }
