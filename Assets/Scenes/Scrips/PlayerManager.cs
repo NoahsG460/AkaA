@@ -5,19 +5,10 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public float moveSpeed = 3f;
-<<<<<<< HEAD
-    public float jumpForce = 5f;
-    [SerializeField] private PolygonCollider2D attackCollider; // ƒCƒ“ƒXƒyƒNƒ^‚ÅÝ’è‰Â”\‚É‚·‚é
-    public LayerMask enemyLayer;
-    private Rigidbody2D rb;
-    private Animator animator;
-    public int hp = 5;
-    private int attackPower = 1;
-    private bool isGrounded;
-=======
     public float boostedSpeed = 6f; // ƒVƒtƒgƒL[‚Å‘¬‚­‚È‚é‘¬“x
     public float jumpForce = 5f; // ƒWƒƒƒ“ƒv—Í‚ðÝ’è
     public Transform attackPoint;
+    public BoxCollider2D attackCollider; // ƒAƒ^ƒbƒN—p‚ÌƒRƒ‰ƒCƒ_[
     public float attackRadius;
     public LayerMask enemyLayer;
     Rigidbody2D rb;
@@ -27,17 +18,12 @@ public class PlayerManager : MonoBehaviour
     private bool isGrounded; // ’n–Ê‚ÉÚ’n‚µ‚Ä‚¢‚é‚©‚Ì”»’è
     private bool isBoosting; // ƒXƒs[ƒhƒAƒbƒv’†‚©‚ð”»’è
     private float currentSpeed; // Œ»Ý‚ÌˆÚ“®‘¬“x
->>>>>>> èµ°ã‚Šã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆ†ã‘ã‚‹
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-<<<<<<< HEAD
         attackCollider.enabled = false; // UŒ‚Žž‚Ì‚Ý—LŒø‚É‚·‚é‚½‚ßAÅ‰‚Í–³Œø‰»
-=======
-        currentSpeed = moveSpeed; // ‰Šú‘¬“x‚ðÝ’è
->>>>>>> èµ°ã‚Šã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆ†ã‘ã‚‹
     }
 
     void Update()
@@ -53,8 +39,6 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("ƒWƒƒƒ“ƒv‚ªƒgƒŠƒK[‚³‚ê‚Ü‚µ‚½");
         }
 
-<<<<<<< HEAD
-=======
         // ƒVƒtƒgƒL[‚ÅƒXƒs[ƒhƒAƒbƒvi’nã‚É‚¢‚é‚Æ‚«‚Ì‚Ýj
         if (isGrounded && Input.GetKey(KeyCode.LeftShift))
         {
@@ -66,22 +50,17 @@ public class PlayerManager : MonoBehaviour
         }
 
         // ƒvƒŒƒCƒ„[‚ÌˆÚ“®
->>>>>>> èµ°ã‚Šã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆ†ã‘ã‚‹
         Movement();
     }
 
     void Movement()
     {
-<<<<<<< HEAD
-        float x = Input.GetAxisRaw("Horizontal");
-=======
         float x = Input.GetAxisRaw("Horizontal"); // ‰¡•ûŒü‚Ì“ü—Í (A/DƒL[‚â–îˆóƒL[)
 
         // Œ»Ý‚Ì‘¬“x‚ðŒvŽZi’nã‚Å‚Ì‚Ýƒu[ƒXƒg“K—pj
         currentSpeed = isBoosting ? boostedSpeed : moveSpeed;
 
         // Œü‚«‚Ì•ÏX
->>>>>>> èµ°ã‚Šã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆ†ã‘ã‚‹
         if (x > 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -91,15 +70,10 @@ public class PlayerManager : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
 
-<<<<<<< HEAD
-        animator.SetFloat("Speed", Mathf.Abs(x));
-        rb.velocity = new Vector2(x * moveSpeed, rb.velocity.y);
-=======
         animator.SetFloat("Speed", Mathf.Abs(x)); // ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒXƒs[ƒhÝ’è
 
         // ˆÚ“®‚ð“K—p
         rb.velocity = new Vector2(x * currentSpeed, rb.velocity.y);
->>>>>>> èµ°ã‚Šã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆ†ã‘ã‚‹
     }
 
     void Attack()
@@ -130,18 +104,7 @@ public class PlayerManager : MonoBehaviour
         isGrounded = false;
     }
 
-<<<<<<< HEAD
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-        }
-    }
-
-=======
     // ƒvƒŒƒCƒ„[‚ªƒ_ƒ[ƒW‚ðŽó‚¯‚½‚Æ‚«‚Ìˆ—
->>>>>>> èµ°ã‚Šã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆ†ã‘ã‚‹
     public void OnDamage(int damage)
     {
         hp -= damage;
@@ -164,8 +127,6 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("ƒvƒŒƒCƒ„[‚ªŽ€–S‚µ‚Ü‚µ‚½");
     }
 
-<<<<<<< HEAD
-=======
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Me"))
@@ -179,7 +140,6 @@ public class PlayerManager : MonoBehaviour
     }
 
     // UŒ‚”ÍˆÍ‚ðƒMƒYƒ‚‚Å•\Ž¦
->>>>>>> èµ°ã‚Šã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼åˆ†ã‘ã‚‹
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
