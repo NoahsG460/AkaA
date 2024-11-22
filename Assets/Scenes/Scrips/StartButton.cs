@@ -13,7 +13,7 @@ public class StartBotton : MonoBehaviour
     {
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            SceneManager.LoadScene(SceneName);
+            SceneManager.LoadScene("–¼‘O“ü—Í‰æ–Ê");
         });
     }
 
