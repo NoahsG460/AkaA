@@ -8,8 +8,8 @@ public class CharacterShoot : MonoBehaviour
 
     void Update()
     {
-        // スペースキーで発射
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Kキーで発射
+        if (Input.GetKeyDown(KeyCode.K))
         {
             Shoot();
         }
