@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public Transform attackPoint;
-    public float attackRadius; // UŒ‚‚Ì”¼Œa
+    public Transform attackPoint; // UŒ‚ˆÊ’u
+    public float attackRadius;    // UŒ‚‚Ì”¼Œa
     public LayerMask enemyLayer;
+    public float attackDelay = 0.2f;  // UŒ‚”»’è‚ªo‚é‚Ü‚Å‚Ì’x‰„
+    public float attackDuration = 0.3f; // UŒ‚”»’è‚Ì‘±ŠÔ
     Animator animator;
     public int hp = 5; // ƒvƒŒƒCƒ„[‚ÌHP‚ğİ’è
     int attackPower = 1;
+    private Coroutine attackCoroutine;
 
     void Start()
     {
@@ -20,7 +23,8 @@ public class PlayerManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            Attack();
+            if (attackCoroutine == null) // UŒ‚’†‚Å‚È‚¢ê‡‚Ì‚İÀs
+                attackCoroutine = StartCoroutine(Attack());
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && GetComponent<PlayerStamina>().IsGrounded)
@@ -29,11 +33,14 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    void Attack()
+    IEnumerator Attack()
     {
         animator.SetTrigger("IsAttack");
 
-        // UŒ‚”ÍˆÍ“à‚Ì“G‚ğŒŸo
+        // UŒ‚”»’è‚ğ’x‰„‚³‚¹‚é
+        yield return new WaitForSeconds(attackDelay);
+
+        // UŒ‚”»’è‚ğ—LŒø‰»
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
 
         foreach (Collider2D hitEnemy in hitEnemies)
@@ -41,6 +48,12 @@ public class PlayerManager : MonoBehaviour
             Debug.Log(hitEnemy.gameObject.name + "‚ÉUŒ‚");
             hitEnemy.GetComponent<EnemyManager>().OnDamage(attackPower);
         }
+
+        // UŒ‚”»’è‚Ì‘±ŠÔ
+        yield return new WaitForSeconds(attackDuration);
+
+        // UŒ‚Š®—¹
+        attackCoroutine = null;
     }
 
     void Jump()

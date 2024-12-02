@@ -1656,6 +1656,8 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  attackDelay: 0.4
+  attackDuration: 0.3
   hp: 5
 --- !u!114 &2097946664
 MonoBehaviour:
