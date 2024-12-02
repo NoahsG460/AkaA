@@ -3,7 +3,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public int damage = 1;         // 飛び道具のダメージ
-    public float lifetime = 5f;   // 飛び道具が自動的に消えるまでの時間
+    public float lifetime = 100f;   // 飛び道具が自動的に消えるまでの時間
 
     void Start()
     {
