@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7212816181801003186}
   - component: {fileID: 872821446409028032}
   - component: {fileID: 407803542052950678}
+  - component: {fileID: 2290435371324651746}
   m_Layer: 0
   m_Name: wepon
   m_TagString: Untagged
@@ -158,3 +159,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.65, y: 1.22}
   m_EdgeRadius: 0
+--- !u!114 &2290435371324651746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184609794247541050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2058c20b61bcfd648bb941210c87672e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  lifetime: 5
