@@ -1470,6 +1470,7 @@ GameObject:
   - component: {fileID: 2097946662}
   - component: {fileID: 2097946663}
   - component: {fileID: 2097946664}
+  - component: {fileID: 2097946665}
   m_Layer: 7
   m_Name: HeavyBandit_4
   m_TagString: Untagged
@@ -1677,6 +1678,21 @@ MonoBehaviour:
   maxStamina: 100
   staminaDrainRate: 10
   staminaRecoveryRate: 5
+--- !u!114 &2097946665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097946657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98dfd4b36c08ce2468b8824ec57fca5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxGuardStock: 3
+  guardRechargeTime: 5
+  guardCooldown: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
