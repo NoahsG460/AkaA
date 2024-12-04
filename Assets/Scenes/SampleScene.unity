@@ -765,7 +765,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 291339170}
-  - component: {fileID: 291339171}
   m_Layer: 7
   m_Name: Wepon
   m_TagString: Untagged
@@ -782,27 +781,12 @@ Transform:
   m_GameObject: {fileID: 291339169}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46, y: 0.63, z: 0}
+  m_LocalPosition: {x: -1.72, y: 0.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2097946660}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &291339171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291339169}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f71cf96fe6224814f9fbc17e3234a7e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
-  shootPoint: {fileID: 0}
-  projectileSpeed: 10
 --- !u!1 &317396487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,6 +1272,7 @@ GameObject:
   - component: {fileID: 2097946664}
   - component: {fileID: 2097946665}
   - component: {fileID: 2097946666}
+  - component: {fileID: 2097946667}
   m_Layer: 7
   m_Name: HeavyBandit_4
   m_TagString: Untagged
@@ -1522,8 +1507,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f149839121238d148aa5740b4b54210b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minX: -10
-  maxX: 10
+  minX: -11.5
+  maxX: 11.5
+--- !u!114 &2097946667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097946657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f71cf96fe6224814f9fbc17e3234a7e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 184609794247541050, guid: 3262c892ee9349f4782ae4b3f6624016, type: 3}
+  shootPoint: {fileID: 291339170}
+  projectileSpeed: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

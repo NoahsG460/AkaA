@@ -3,23 +3,24 @@ using UnityEngine;
 public class CharacterShoot : MonoBehaviour
 {
     public GameObject projectilePrefab; // 飛び道具のPrefab
-    public Transform shootPoint;       // 飛び道具を発射する位置
+    public Transform shootPoint;       // 発射ポイントのTransform
     public float projectileSpeed = 10f; // 飛び道具のスピード
-    private bool facingRight = true;   // キャラクターが右向きかどうか
+
+    private float lastDirection = 1f; // 最後に押されたキーの方向（1:右, -1:左）
 
     void Update()
     {
-        // A, Dキーで移動入力を確認して向きを更新
-        if (Input.GetKey(KeyCode.A))
+        // Aキーで左、Dキーで右の方向を記録
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            if (facingRight) Flip();
+            lastDirection = -1f;
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
-            if (!facingRight) Flip();
+            lastDirection = 1f;
         }
 
-        // 発射処理
+        // Kキーで発射
         if (Input.GetKeyDown(KeyCode.K))
         {
             Shoot();
@@ -35,28 +36,10 @@ public class CharacterShoot : MonoBehaviour
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            // キャラクターの向きに応じた速度を設定
-            Vector2 shootDirection = facingRight ? Vector2.right : Vector2.left;
-            rb.velocity = shootDirection * projectileSpeed;
+            rb.velocity = new Vector2(lastDirection * projectileSpeed, 0f); // 最後の方向に飛ばす
         }
 
-        // 自分との衝突を無視
-        Collider2D playerCollider = GetComponent<Collider2D>();
-        Collider2D projectileCollider = projectile.GetComponent<Collider2D>();
-        if (playerCollider != null && projectileCollider != null)
-        {
-            Physics2D.IgnoreCollision(playerCollider, projectileCollider);
-        }
-    }
-
-    void Flip()
-    {
-        // キャラクターの向きを反転
-        facingRight = !facingRight;
-
-        // キャラクターのスプライトの向きを反転させる
-        Vector3 localScale = transform.localScale;
-        localScale.x *= -1; // X軸を反転
-        transform.localScale = localScale;
+        // デバッグログで確認
+        Debug.Log("Projectile Direction: " + (lastDirection > 0 ? "Right" : "Left"));
     }
 }
