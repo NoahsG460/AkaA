@@ -505,7 +505,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 253}
+  m_AnchoredPosition: {x: -4.2201e-10, y: 75.714}
   m_SizeDelta: {x: 765.8385, y: 151.4286}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &330979084
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_OnDidEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2014450080}
+      - m_Target: {fileID: 2014450082}
         m_TargetAssemblyTypeName: Test, Assembly-CSharp
         m_MethodName: InputText
         m_Mode: 1
@@ -750,7 +750,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2014450080}
+      - m_Target: {fileID: 2014450082}
         m_TargetAssemblyTypeName: Test, Assembly-CSharp
         m_MethodName: InputText
         m_Mode: 1
@@ -1072,6 +1072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2014450081}
   - component: {fileID: 2014450080}
+  - component: {fileID: 2014450082}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -1091,8 +1092,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef1de581e1a00a48b0be06feecd6a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 555131508}
-  text: {fileID: 225783413}
 --- !u!4 &2014450081
 Transform:
   m_ObjectHideFlags: 0
@@ -1108,6 +1107,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2014450082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014450079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b533498b9d4d7a4c897dc6c656f4b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 555131508}
+  text: {fileID: 225783413}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
