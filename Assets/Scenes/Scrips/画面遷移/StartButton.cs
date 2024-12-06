@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // シーン管理のために必要
 
 public class StartButton : MonoBehaviour
 {
-    public Image buttonImage;  // ボタンのImageコンポーネントを指定
-    public float blinkSpeed = 1.0f;  // 点滅速度
+    public Image buttonImage;   // ボタンのImageコンポーネント
+    public float blinkSpeed = 1.0f; // 点滅速度
 
-    private bool isIncreasing = true;  // 透明度が増加中か減少中か
-    private float alpha = 1.0f;        // 透明度
+    private bool isIncreasing = true;
+    private float alpha = 1.0f;
 
     void Update()
     {
@@ -17,7 +18,7 @@ public class StartButton : MonoBehaviour
             if (isIncreasing)
             {
                 alpha += Time.deltaTime * blinkSpeed;
-                if (alpha >= 1.0f) // 最大透明度に達したら減少に切り替え
+                if (alpha >= 1.0f)
                 {
                     alpha = 1.0f;
                     isIncreasing = false;
@@ -26,7 +27,7 @@ public class StartButton : MonoBehaviour
             else
             {
                 alpha -= Time.deltaTime * blinkSpeed;
-                if (alpha <= 0.3f) // 最小透明度に達したら増加に切り替え
+                if (alpha <= 0.3f)
                 {
                     alpha = 0.3f;
                     isIncreasing = true;
@@ -38,5 +39,12 @@ public class StartButton : MonoBehaviour
             color.a = alpha;
             buttonImage.color = color;
         }
+    }
+
+    // ボタンを押したときに呼ばれる関数
+    public void OnStartButtonClicked()
+    {
+        // 名前入力シーンに遷移
+        SceneManager.LoadScene("名前入力画面");
     }
 }
