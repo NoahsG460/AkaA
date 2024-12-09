@@ -104,10 +104,19 @@ public class EnemyManager : MonoBehaviour
     {
         hp = 0;
         animator.SetTrigger("Die");
+        Debug.Log("プレイヤーが死亡しました");
 
-        // 2秒後にオブジェクトを削除
-        Destroy(gameObject, 2f);
+        // 一定時間待機してからシーン遷移
+        StartCoroutine(GameOverTransition());
     }
+
+    // ゲームオーバー画面への遷移
+    IEnumerator GameOverTransition()
+    {
+        yield return new WaitForSeconds(2f); // アニメーションが終わるまで待機（調整可能）
+        UnityEngine.SceneManagement.SceneManager.LoadScene("リザルト");
+    }
+
 
     // 攻撃範囲をギズモで表示
     public void OnDrawGizmosSelected()
