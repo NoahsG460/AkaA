@@ -5,19 +5,20 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 {
     void Start()
     {
-        // サーバーに接続
-        PhotonNetwork.ConnectUsingSettings();
+        // プレイヤーを生成する
+        SpawnPlayer();
     }
 
-    public override void OnConnectedToMaster()
+    void SpawnPlayer()
     {
-        // ルームに接続できたら自動でルームを作成または参加
-        PhotonNetwork.JoinOrCreateRoom("Room1", new Photon.Realtime.RoomOptions(), null); // TypedLobby.Defaultをnullに変更
-    }
+        // プレイヤーPrefabの名前
+        string prefabName = "PlayerPrefab";
 
-    public override void OnJoinedRoom()
-    {
-        // プレイヤーを生成
-        PhotonNetwork.Instantiate("PlayerPrefab", new Vector3(0, 0, 0), Quaternion.identity);
+        // 生成する位置と回転
+        Vector3 spawnPosition = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
+        Quaternion spawnRotation = Quaternion.identity;
+
+        // PhotonNetwork.InstantiateでPrefabを生成
+        PhotonNetwork.Instantiate(prefabName, spawnPosition, spawnRotation);
     }
 }
