@@ -20,6 +20,9 @@ public class PlayerStamina : MonoBehaviour
     public float staminaDrainRate = 10f; // スタミナ消費速度（毎秒）
     public float staminaRecoveryRate = 5f; // スタミナ回復速度（毎秒）
 
+    // 追加：操作中かどうかを示すフラグ
+    public bool isControlled = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,6 +32,8 @@ public class PlayerStamina : MonoBehaviour
 
     void Update()
     {
+        if (!isControlled) return; // 操作対象でない場合は移動処理をスキップ
+
         // スタミナの回復
         if (!isBoosting && currentStamina < maxStamina)
         {

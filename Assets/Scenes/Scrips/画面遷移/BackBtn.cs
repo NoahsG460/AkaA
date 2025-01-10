@@ -7,11 +7,12 @@ using UnityEngine.UI;
 public class BackBtn : MonoBehaviour
 {
     // Start is called before the first frame update
+    // Start is called before the first frame update
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            SceneManager.LoadScene("タイトル画面");
+            SceneManager.LoadScene("キャラ選択画面");
         });
     }
 }
