@@ -45,6 +45,6 @@ public class StartButton : MonoBehaviour
     public void OnStartButtonClicked()
     {
         // 名前入力シーンに遷移
-        SceneManager.LoadScene("名前入力画面");
+        SceneManager.LoadScene("キャラ選択画面");
     }
 }
