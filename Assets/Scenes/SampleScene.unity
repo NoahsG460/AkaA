@@ -1127,6 +1127,7 @@ GameObject:
   - component: {fileID: 865215243}
   - component: {fileID: 865215246}
   - component: {fileID: 865215245}
+  - component: {fileID: 865215247}
   m_Layer: 0
   m_Name: "\u5E7D\u970A"
   m_TagString: Untagged
@@ -1348,6 +1349,19 @@ MonoBehaviour:
   maxGuardStock: 3
   guardRechargeTime: 5
   guardCooldown: 0.5
+--- !u!114 &865215247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865215238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e186f222fbfa940aefe6f208b05f6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fixedScale: {x: 0.1, y: 0.1, z: 1}
 --- !u!1 &970776230
 GameObject:
   m_ObjectHideFlags: 0
