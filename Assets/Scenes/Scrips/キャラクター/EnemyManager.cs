@@ -1,6 +1,9 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -13,10 +16,14 @@ public class EnemyManager : MonoBehaviour
     public int hp = 3; // ìGÇÃHP
     int attackPower = 1; // çUåÇóÕ
 
+    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        
     }
 
     void Update()
