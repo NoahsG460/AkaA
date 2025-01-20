@@ -16,14 +16,13 @@ public class EnemyManager : MonoBehaviour
     public int hp = 3; // ìGÇÃHP
     int attackPower = 1; // çUåÇóÕ
 
-    public UnityEngine.UI.Image EnemyHP;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        EnemyHP.fillAmount = hp;
     }
 
     void Update()
@@ -106,7 +105,6 @@ public class EnemyManager : MonoBehaviour
             Die();
         }
 
-        EnemyHP.fillAmount -= 1f;
     }
 
     void Die()
