@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
     int attackPower = 1;
     private Coroutine attackCoroutine;
 
+
     void Start()
     {
         animator = GetComponent<Animator>();
