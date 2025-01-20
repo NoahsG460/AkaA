@@ -85,5 +85,10 @@ public class PlayerStamina : MonoBehaviour
 
         // ˆÚ“®‚ð“K—p
         rb.velocity = new Vector2(x * currentSpeed, rb.velocity.y);
+
+        if (StaminaGauge != null)
+        {
+            
+        }
     }
 }
