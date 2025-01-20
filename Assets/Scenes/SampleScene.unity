@@ -1451,6 +1451,7 @@ MonoBehaviour:
   maxStamina: 100
   staminaDrainRate: 10
   staminaRecoveryRate: 5
+  StaminaGauge: {fileID: 0}
 --- !u!61 &865215243
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1994,6 +1995,7 @@ MonoBehaviour:
   maxStamina: 100
   staminaDrainRate: 10
   staminaRecoveryRate: 5
+  StaminaGauge: {fileID: 134624350}
 --- !u!50 &1496447621
 Rigidbody2D:
   serializedVersion: 4
