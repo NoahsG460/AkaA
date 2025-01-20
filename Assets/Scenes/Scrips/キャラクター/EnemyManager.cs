@@ -106,7 +106,7 @@ public class EnemyManager : MonoBehaviour
             Die();
         }
 
-        EnemyHP.fillAmount -= 0.1f;
+        EnemyHP.fillAmount -= 1f;
     }
 
     void Die()
