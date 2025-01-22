@@ -35,7 +35,7 @@ public class PlayerStamina : MonoBehaviour
         }
         else
         {
-
+            Debug.LogWarning("StaminaGauge Image がアサインされていません。");
         }
     }
 
@@ -62,6 +62,8 @@ public class PlayerStamina : MonoBehaviour
 
         // プレイヤーの移動
         Movement();
+        
+        
     }
 
     void Movement()
@@ -85,10 +87,13 @@ public class PlayerStamina : MonoBehaviour
 
         // 移動を適用
         rb.velocity = new Vector2(x * currentSpeed, rb.velocity.y);
+    }
 
+    public void Gauge()
+    {
         if (StaminaGauge != null)
         {
-            
+            StaminaGauge.fillAmount = currentStamina;
         }
     }
 }

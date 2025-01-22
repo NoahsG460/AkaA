@@ -1283,6 +1283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeavyBandit_4
       objectReference: {fileID: 0}
+    - target: {fileID: 3403986363048421939, guid: 2dcaf7563d1193b418c36aa61d81c60d, type: 3}
+      propertyPath: StaminaGauge
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
