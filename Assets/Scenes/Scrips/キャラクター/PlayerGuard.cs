@@ -6,6 +6,7 @@ public class PlayerGuard : MonoBehaviour
     public int maxGuardStock = 3;        // 最大ストック数
     public float guardRechargeTime = 5f; // ストックが1つ回復するまでの時間
     public float guardCooldown = 0.5f;   // ガード解除後の後隙（クールダウン）
+    public float guardDuration = 0.5f;   // ガードの持続時間
     private int currentGuardStock;      // 現在のガードストック数
     private bool canGuard = true;       // ガード可能かどうか
     private float currentCooldown = 0f; // クールダウンのカウント
@@ -60,10 +61,21 @@ public class PlayerGuard : MonoBehaviour
 
         Debug.Log("ガード発動！ 残りストック: " + currentGuardStock);
 
-        // ガード中の処理（必要なら待機時間を設定可能）
-        yield return new WaitForSeconds(0.3f);
+        // ガード持続時間
+        yield return new WaitForSeconds(guardDuration);
+
+        EndGuard(); // ガードを終了
 
         Debug.Log("ガードが終了しました。後隙が開始します");
+    }
+
+    void EndGuard()
+    {
+        if (animator != null)
+        {
+            animator.ResetTrigger("IsGuard"); // トリガーをリセット
+            animator.SetTrigger("EndGuard"); // 必要に応じてガード終了アニメーションを再生
+        }
     }
 
     IEnumerator RechargeGuard()
