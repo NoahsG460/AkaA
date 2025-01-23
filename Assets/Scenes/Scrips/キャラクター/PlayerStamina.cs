@@ -54,11 +54,13 @@ public class PlayerStamina : MonoBehaviour
             isBoosting = true;
             currentStamina -= staminaDrainRate * Time.deltaTime;
             currentStamina = Mathf.Clamp(currentStamina, 0, maxStamina);
+
+
         }
         else
         {
             isBoosting = false;
-        }
+        }        
 
         // プレイヤーの移動
         Movement();
@@ -87,13 +89,11 @@ public class PlayerStamina : MonoBehaviour
 
         // 移動を適用
         rb.velocity = new Vector2(x * currentSpeed, rb.velocity.y);
-    }
 
-    public void Gauge()
-    {
         if (StaminaGauge != null)
         {
-            StaminaGauge.fillAmount = currentStamina;
+            StaminaGauge.fillAmount = (float)currentStamina / maxStamina;
         }
+
     }
 }
