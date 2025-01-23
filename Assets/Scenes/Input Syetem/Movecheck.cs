@@ -15,7 +15,7 @@ public class movecheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controller_.Player.Fire.triggered)
+        if (controller_.Player.Attack.triggered)
         {
             Debug.Log("弾が出たぜペッシ");
         }   

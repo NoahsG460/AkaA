@@ -1,5 +1,5 @@
 {
-    "name": "controllerDEMO",
+    "name": "ControllerDEMO",
     "maps": [
         {
             "name": "Player",
@@ -24,9 +24,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Fire",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "f443ef91-d7e2-4fdb-86b6-90ffe9bd84bb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "c05f928d-7920-41c9-ac48-0569daa1f565",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -59,10 +68,10 @@
                 {
                     "name": "up",
                     "id": "e2062cb9-1b15-46a2-838c-2f8d72a0bdd9",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/ space",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -73,7 +82,7 @@
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -84,7 +93,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -95,7 +104,7 @@
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -106,7 +115,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -117,7 +126,7 @@
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -128,7 +137,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -139,7 +148,7 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -206,7 +215,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -217,7 +226,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -228,7 +237,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Fire",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -239,7 +248,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Fire",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -250,7 +259,40 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Fire",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b068297e-64d8-40ee-88fb-c9c34ae234b1",
+                    "path": "<Keyboard>/ J",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27980516-3927-4f1a-a6b6-e21d52721193",
+                    "path": "<DualShockGamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c714f6db-b34b-41a1-b30a-6a097795262d",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

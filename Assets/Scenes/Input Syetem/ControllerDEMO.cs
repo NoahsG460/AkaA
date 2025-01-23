@@ -46,9 +46,18 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""f443ef91-d7e2-4fdb-86b6-90ffe9bd84bb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""c05f928d-7920-41c9-ac48-0569daa1f565"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -81,10 +90,10 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""e2062cb9-1b15-46a2-838c-2f8d72a0bdd9"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/ space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -95,7 +104,7 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -106,7 +115,7 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -117,7 +126,7 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -128,7 +137,7 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -139,7 +148,7 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -150,7 +159,7 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -161,7 +170,7 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -228,7 +237,7 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -239,7 +248,7 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -250,7 +259,7 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -261,7 +270,7 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -272,7 +281,40 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b068297e-64d8-40ee-88fb-c9c34ae234b1"",
+                    ""path"": ""<Keyboard>/ J"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27980516-3927-4f1a-a6b6-e21d52721193"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c714f6db-b34b-41a1-b30a-6a097795262d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -862,7 +904,8 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -938,14 +981,16 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_Shoot;
     public struct PlayerActions
     {
         private @ControllerDEMO m_Wrapper;
         public PlayerActions(@ControllerDEMO wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -961,9 +1006,12 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Fire.started += instance.OnFire;
-            @Fire.performed += instance.OnFire;
-            @Fire.canceled += instance.OnFire;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @Shoot.started += instance.OnShoot;
+            @Shoot.performed += instance.OnShoot;
+            @Shoot.canceled += instance.OnShoot;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -974,9 +1022,12 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Fire.started -= instance.OnFire;
-            @Fire.performed -= instance.OnFire;
-            @Fire.canceled -= instance.OnFire;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @Shoot.started -= instance.OnShoot;
+            @Shoot.performed -= instance.OnShoot;
+            @Shoot.canceled -= instance.OnShoot;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1161,7 +1212,8 @@ public partial class @ControllerDEMO: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnFire(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

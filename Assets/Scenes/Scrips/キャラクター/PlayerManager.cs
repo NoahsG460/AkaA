@@ -1,16 +1,17 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    public Transform attackPoint; // UŒ‚ˆÊ’u
-    public float attackRadius;    // UŒ‚‚Ì”¼Œa
+    public Transform attackPoint; // æ”»æ’ƒä½ç½®
+    public float attackRadius;    // æ”»æ’ƒã®åŠå¾„
     public LayerMask enemyLayer;
-    public float attackDelay = 0.2f;  // UŒ‚”»’è‚ªo‚é‚Ü‚Å‚Ì’x‰„
-    public float attackDuration = 0.3f; // UŒ‚”»’è‚Ì‘±ŠÔ
+    public float attackDelay = 0.2f;  // æ”»æ’ƒåˆ¤å®šãŒå‡ºã‚‹ã¾ã§ã®é…å»¶
+    public float attackDuration = 0.3f; // æ”»æ’ƒåˆ¤å®šã®æŒç¶šæ™‚é–“
     Animator animator;
-    public int hp = 5; // ƒvƒŒƒCƒ„[‚ÌHP‚ğİ’è
+    public int hp = 5; // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®HPã‚’è¨­å®š
     int attackPower = 1;
     private Coroutine attackCoroutine;
 
@@ -23,7 +24,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            if (attackCoroutine == null) // UŒ‚’†‚Å‚È‚¢ê‡‚Ì‚İÀs
+            if (attackCoroutine == null) // æ”»æ’ƒä¸­ã§ãªã„å ´åˆã®ã¿å®Ÿè¡Œ
                 attackCoroutine = StartCoroutine(Attack());
         }
 
@@ -31,28 +32,63 @@ public class PlayerManager : MonoBehaviour
         {
             Jump();
         }
+
+        //gamepad Right TrigerãŒæ©Ÿèƒ½ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã®å‹•ä½œç¢ºèªç”¨
+        float triggerValue = Gamepad.current?.rightTrigger.ReadValue() ?? 0;
+        Debug.Log("Right Trigger Value: " + triggerValue);
     }
+
+    // Input System ã‹ã‚‰ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’å–å¾—
+    private PlayerInput playerInput;
+    private InputAction attackAction;
+
+    // Awakeã§Input Systemã®è¨­å®šã‚’å–å¾—
+    void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>(); // Player Inputã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—
+        attackAction = playerInput.actions["Attack"]; // Input Actionså†…ã®"Attack"ã‚’å‚ç…§
+    }
+
+    // æœ‰åŠ¹åŒ–æ™‚ã«ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’ç™»éŒ²
+    private void OnEnable()
+    {
+        attackAction.performed += OnAttack; // Attackã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’ç›£è¦–
+    }
+
+    // ç„¡åŠ¹åŒ–æ™‚ã«ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’è§£é™¤
+    private void OnDisable()
+    {
+        attackAction.performed -= OnAttack; // ã‚¤ãƒ™ãƒ³ãƒˆã®è§£é™¤
+    }
+
+    // Right TriggerãŒæŠ¼ã•ã‚ŒãŸã¨ãã®å‡¦ç†
+    private void OnAttack(InputAction.CallbackContext context)
+    {
+        // æ—¢å­˜ã®Attackãƒ¡ã‚½ãƒƒãƒ‰ã‚’å‘¼ã³å‡ºã™
+        Attack();
+    }
+
 
     IEnumerator Attack()
     {
         animator.SetTrigger("IsAttack");
 
-        // UŒ‚”»’è‚ğ’x‰„‚³‚¹‚é
+        // æ”»æ’ƒåˆ¤å®šã‚’é…å»¶ã•ã›ã‚‹
         yield return new WaitForSeconds(attackDelay);
 
-        // UŒ‚”»’è‚ğ—LŒø‰»
+        // æ”»æ’ƒåˆ¤å®šã‚’æœ‰åŠ¹åŒ–
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
 
         foreach (Collider2D hitEnemy in hitEnemies)
         {
-            Debug.Log(hitEnemy.gameObject.name + "‚ÉUŒ‚");
+            Debug.Log(hitEnemy.gameObject.name + "ã«æ”»æ’ƒ");
             hitEnemy.GetComponent<EnemyManager>().OnDamage(attackPower);
         }
 
-        // UŒ‚”»’è‚Ì‘±ŠÔ
+        // æ”»æ’ƒåˆ¤å®šã®æŒç¶šæ™‚é–“
         yield return new WaitForSeconds(attackDuration);
 
-        // UŒ‚Š®—¹
+        // æ”»æ’ƒå®Œäº†
         attackCoroutine = null;
     }
 
@@ -66,9 +102,9 @@ public class PlayerManager : MonoBehaviour
     {
         hp -= damage;
         animator.SetTrigger("IsHurt");
-        Debug.Log("ƒvƒŒƒCƒ„[‚ª" + damage + "ƒ_ƒ[ƒW‚ğó‚¯‚½");
+        Debug.Log("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒ" + damage + "ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãŸ");
 
-        // HPƒo[‚ğŠÇ—‚·‚é‚â‚Â‚Å‚·
+        // HPãƒãƒ¼ã‚’ç®¡ç†ã™ã‚‹ã‚„ã¤ã§ã™
         //GameObject director = GameObject.Find("HPDirector");
         //director.GetComponent<HPDirector>().DecreaseHP();
 
@@ -82,17 +118,17 @@ public class PlayerManager : MonoBehaviour
     {
         hp = 0;
         animator.SetTrigger("Die");
-        Debug.Log("ƒvƒŒƒCƒ„[‚ª€–S‚µ‚Ü‚µ‚½");
+        Debug.Log("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæ­»äº¡ã—ã¾ã—ãŸ");
 
-        // ˆê’èŠÔ‘Ò‹@‚µ‚Ä‚©‚çƒV[ƒ“‘JˆÚ
+        // ä¸€å®šæ™‚é–“å¾…æ©Ÿã—ã¦ã‹ã‚‰ã‚·ãƒ¼ãƒ³é·ç§»
         StartCoroutine(GameOverTransition());
     }
 
-    // ƒQ[ƒ€ƒI[ƒo[‰æ–Ê‚Ö‚Ì‘JˆÚ
+    // ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ç”»é¢ã¸ã®é·ç§»
     IEnumerator GameOverTransition()
     {
-        yield return new WaitForSeconds(2f); // ƒAƒjƒ[ƒVƒ‡ƒ“‚ªI‚í‚é‚Ü‚Å‘Ò‹@i’²®‰Â”\j
-        UnityEngine.SceneManagement.SceneManager.LoadScene("ƒŠƒUƒ‹ƒg");
+        yield return new WaitForSeconds(2f); // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒçµ‚ã‚ã‚‹ã¾ã§å¾…æ©Ÿï¼ˆèª¿æ•´å¯èƒ½ï¼‰
+        UnityEngine.SceneManagement.SceneManager.LoadScene("ãƒªã‚¶ãƒ«ãƒˆ");
     }
 
 
@@ -104,11 +140,11 @@ public class PlayerManager : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Ground"))
         {
-            GetComponent<PlayerStamina>().IsGrounded = true; // ’n–Ê‚ÉÚ’n
+            GetComponent<PlayerStamina>().IsGrounded = true; // åœ°é¢ã«æ¥åœ°
         }
     }
 
-    // UŒ‚”ÍˆÍ‚ğƒMƒYƒ‚‚Å•\¦
+    // æ”»æ’ƒç¯„å›²ã‚’ã‚®ã‚ºãƒ¢ã§è¡¨ç¤º
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
