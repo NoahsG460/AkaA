@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     public Transform attackPoint; // çUåÇà íu
     public float attackRadius;    // çUåÇÇÃîºåa
@@ -21,15 +23,18 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (photonView.IsMine)
         {
-            if (attackCoroutine == null) // çUåÇíÜÇ≈Ç»Ç¢èÍçáÇÃÇ›é¿çs
-                attackCoroutine = StartCoroutine(Attack());
-        }
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                if (attackCoroutine == null) // çUåÇíÜÇ≈Ç»Ç¢èÍçáÇÃÇ›é¿çs
+                    attackCoroutine = StartCoroutine(Attack());
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space) && GetComponent<PlayerStamina>().IsGrounded)
-        {
-            Jump();
+            if (Input.GetKeyDown(KeyCode.Space) && GetComponent<PlayerStamina>().IsGrounded)
+            {
+                Jump();
+            }
         }
     }
 
@@ -117,4 +122,18 @@ public class PlayerManager : MonoBehaviour
             Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
         }
     }
+    void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            Vector3 myPosition = transform.position;
+            stream.SendNext(myPosition);
+        }
+        if (stream.IsReading)
+        {
+            Vector3 otherPosition = (Vector3)stream.ReceiveNext();
+            transform.position = otherPosition;
+        }
+    }
+
 }

@@ -26,6 +26,5 @@ public class Punconnector : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Room Joined");
-        PhotonNetwork.Instantiate("NetworkObject", Vector3.zero, Quaternion.identity);
-    }
+        PhotonNetwork.Instantiate("GameManager", Vector3.zero, Quaternion.identity);    }
 }
