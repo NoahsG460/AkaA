@@ -15,7 +15,6 @@ public class PunPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (photonView.IsMine) {
