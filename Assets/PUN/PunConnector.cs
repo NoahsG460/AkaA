@@ -14,11 +14,7 @@ public class Punconnector : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     public override void OnConnectedToMaster()
     {
@@ -30,5 +26,6 @@ public class Punconnector : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Room Joined");
+        PhotonNetwork.Instantiate("NetworkObject", Vector3.zero, Quaternion.identity);
     }
 }
