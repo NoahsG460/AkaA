@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 6289582129042243498}
   - component: {fileID: 3688394275341130906}
   - component: {fileID: 3616620579764461762}
+  - component: {fileID: -1473789948083381671}
   m_Layer: 7
   m_Name: HeavyBandit_4
   m_TagString: Untagged
@@ -297,6 +298,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959d4d34b5242254db1186dc7406ef39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1473789948083381671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309654831453456267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4404694636337380189
 GameObject:
   m_ObjectHideFlags: 0
