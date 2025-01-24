@@ -47,4 +47,6 @@ public class BattleTime : MonoBehaviour
         // ToString("00")でゼロプレースフォルダーして、１桁のときは頭に0をつける
         battleTimeText.text = ((int)(limitTime / 60)).ToString("00") + ":" + ((int)limitTime % 60).ToString("00");
     }
+
+    
 }
