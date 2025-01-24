@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// ゲーム内に制限時間を「分：秒」で表示するクラス
@@ -46,5 +47,10 @@ public class BattleTime : MonoBehaviour
         // 引数で受け取った値を[分:秒]に変換して表示する
         // ToString("00")でゼロプレースフォルダーして、１桁のときは頭に0をつける
         battleTimeText.text = ((int)(limitTime / 60)).ToString("00") + ":" + ((int)limitTime % 60).ToString("00");
+
+        if (battleTime == 0)
+        {
+            SceneManager.LoadScene("リザルト");
+        }
     }
 }
