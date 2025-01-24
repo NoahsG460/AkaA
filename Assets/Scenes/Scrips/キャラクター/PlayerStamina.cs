@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStamina : MonoBehaviour
 {
@@ -19,12 +20,21 @@ public class PlayerStamina : MonoBehaviour
     private float currentStamina; // 現在のスタミナ値
     public float staminaDrainRate = 10f; // スタミナ消費速度（毎秒）
     public float staminaRecoveryRate = 5f; // スタミナ回復速度（毎秒）
+    public Image StaminaGauge;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         currentStamina = maxStamina; // スタミナを最大値に設定
+        if (StaminaGauge != null)
+        {
+            StaminaGauge.fillAmount = 1f;
+        }
+        else
+        {
+            Debug.LogWarning("StaminaGauge Image がアサインされていません。");
+        }
     }
 
     void Update()
@@ -73,5 +83,10 @@ public class PlayerStamina : MonoBehaviour
 
         // 移動を適用
         rb.velocity = new Vector2(x * currentSpeed, rb.velocity.y);
+
+        if (StaminaGauge != null)
+        {
+            StaminaGauge.fillAmount = (float)currentStamina / maxStamina;
+        }
     }
 }
