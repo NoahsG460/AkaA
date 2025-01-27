@@ -1481,7 +1481,7 @@ GameObject:
   - component: {fileID: 966321837}
   - component: {fileID: 966321838}
   - component: {fileID: 966321839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u9AD8\u6821\u751F\u5E7D\u970A"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1727,7 +1727,7 @@ MonoBehaviour:
   attackRadius: 0.28
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 192
   attackDelay: 0.2
   attackDuration: 0.3
   hp: 5
@@ -2015,6 +2015,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u5E7D\u970A"
       objectReference: {fileID: 0}
+    - target: {fileID: 560309192460317968, guid: 9e8b231add07c65408312ff91bc0f572, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1650129439589555779, guid: 9e8b231add07c65408312ff91bc0f572, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2925007270892347786, guid: 9e8b231add07c65408312ff91bc0f572, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3350473094579060812, guid: 9e8b231add07c65408312ff91bc0f572, type: 3}
       propertyPath: sceneViewId
       value: 1
@@ -2237,7 +2249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1709332498}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
