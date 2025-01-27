@@ -218,6 +218,7 @@ MonoBehaviour:
   maxGuardStock: 3
   guardRechargeTime: 5
   guardCooldown: 0.5
+  guardDuration: 0.5
 --- !u!114 &4192966839246142790
 MonoBehaviour:
   m_ObjectHideFlags: 0
