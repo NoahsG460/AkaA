@@ -21,6 +21,7 @@ public class PlayerStamina : MonoBehaviour
     public float staminaDrainRate = 10f; // スタミナ消費速度（毎秒）
     public float staminaRecoveryRate = 5f; // スタミナ回復速度（毎秒）
     public Image StaminaGauge;
+    SpriteRenderer sr;
 
     void Start()
     {
@@ -35,6 +36,8 @@ public class PlayerStamina : MonoBehaviour
         {
             Debug.LogWarning("StaminaGauge Image がアサインされていません。");
         }
+
+        this.sr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -73,11 +76,15 @@ public class PlayerStamina : MonoBehaviour
         if (x > 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
+
+            sr.flipX = true;
         }
         else if (x < 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
-        } 
+
+            sr.flipX = false;
+        }
 
         animator.SetFloat("Speed", Mathf.Abs(x)); // アニメーションのスピード設定
 

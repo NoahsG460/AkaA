@@ -1879,10 +1879,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: "\u5E7D\u970A"
       objectReference: {fileID: 0}
+    - target: {fileID: 1562690251221508227, guid: 8e44e5eeb2e3e964ea0f6f9a2e5e09d4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2430036605335558712, guid: 8e44e5eeb2e3e964ea0f6f9a2e5e09d4, type: 3}
       propertyPath: StaminaGauge
       value: 
       objectReference: {fileID: 12446167}
+    - target: {fileID: 5453514926218458922, guid: 8e44e5eeb2e3e964ea0f6f9a2e5e09d4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5522513144336272222, guid: 8e44e5eeb2e3e964ea0f6f9a2e5e09d4, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7087076300429706708, guid: 8e44e5eeb2e3e964ea0f6f9a2e5e09d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.8
