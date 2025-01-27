@@ -9,10 +9,12 @@ public class PunPlayer : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (photonView.IsMine)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (photonView.IsMine) {
