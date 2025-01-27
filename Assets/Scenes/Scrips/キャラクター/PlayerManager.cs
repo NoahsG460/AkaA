@@ -31,6 +31,7 @@ public class PlayerManager : MonoBehaviour
         {
             Jump();
         }
+
     }
 
     IEnumerator Attack()
