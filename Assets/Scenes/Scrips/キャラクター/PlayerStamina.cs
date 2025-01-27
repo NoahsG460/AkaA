@@ -75,14 +75,10 @@ public class PlayerStamina : MonoBehaviour
         // Œü‚«‚Ì•ÏX
         if (x > 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
-
             sr.flipX = true;
         }
         else if (x < 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
-
             sr.flipX = false;
         }
 
