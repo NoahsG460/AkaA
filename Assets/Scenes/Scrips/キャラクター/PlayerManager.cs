@@ -57,9 +57,13 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         // 攻撃判定の持続時間
         yield return new WaitForSeconds(attackDuration);
 
+        // トリガーをリセット
+        animator.ResetTrigger("IsAttack");
+
         // 攻撃完了
         attackCoroutine = null;
     }
+
 
     void Jump()
     {
