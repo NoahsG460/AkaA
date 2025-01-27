@@ -77,7 +77,7 @@ public class PlayerStamina : MonoBehaviour
         else if (x < 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
-        }
+        } 
 
         animator.SetFloat("Speed", Mathf.Abs(x)); // アニメーションのスピード設定
 

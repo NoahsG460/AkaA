@@ -131,6 +131,7 @@ MonoBehaviour:
   maxStamina: 100
   staminaDrainRate: 10
   staminaRecoveryRate: 5
+  StaminaGauge: {fileID: 0}
 --- !u!50 &5880831296410232345
 Rigidbody2D:
   serializedVersion: 4
