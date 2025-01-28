@@ -1001,8 +1001,7 @@ MonoBehaviour:
   - "\u5E7D\u970A"
   - HeavyBandit_4
   - "\u30A6\u30EB\u30D5"
-  spawnPoints:
-  - {fileID: 1105424297}
+  spawnPoint: {fileID: 1105424297}
 --- !u!1 &317396487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2035,4 +2034,3 @@ SceneRoots:
   - {fileID: 210241756}
   - {fileID: 52196261}
   - {fileID: 74592860}
-  - {fileID: 1572789966}
