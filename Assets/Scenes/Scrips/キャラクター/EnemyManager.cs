@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
@@ -122,9 +123,17 @@ public class EnemyManager : MonoBehaviour
         animator.SetTrigger("Die");
         Debug.Log("敵が死亡しました");
 
-        // 必要なら敵を削除する処理を追加
-        Destroy(gameObject, 2f); // 2秒後に敵を削除
+        // 2秒後にシーンを変更
+        Invoke("ChangeScene", 2f); // 2秒後にChangeSceneメソッドを呼び出す
     }
+
+    void ChangeScene()
+    {
+        // ここで遷移したいシーン名に変更
+        Debug.Log("ChangeSceneが呼ばれました");
+        SceneManager.LoadScene("リザルト");
+    }
+
 
     // 攻撃範囲をギズモで表示
     void OnDrawGizmosSelected()
