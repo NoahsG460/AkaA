@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 3015790612302317118}
   - component: {fileID: 4917517856661470014}
   - component: {fileID: 5097177440383724607}
+  - component: {fileID: 4083004951816218385}
   m_Layer: 7
   m_Name: HeavyBandit_4
   m_TagString: Untagged
@@ -227,6 +228,7 @@ MonoBehaviour:
   maxStamina: 100
   staminaDrainRate: 10
   staminaRecoveryRate: 5
+  StaminaGauge: {fileID: 0}
 --- !u!114 &1221168342618755666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +273,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 184609794247541050, guid: 3262c892ee9349f4782ae4b3f6624016, type: 3}
   shootPoint: {fileID: 1893266826942336199}
   projectileSpeed: 10
+  characterSprite: {fileID: 0}
 --- !u!114 &4917517856661470014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +298,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 959d4d34b5242254db1186dc7406ef39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4083004951816218385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179463837094564130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f149839121238d148aa5740b4b54210b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: -7.5
+  maxX: 7.5
 --- !u!1 &2495825280510564273
 GameObject:
   m_ObjectHideFlags: 0

@@ -1019,6 +1019,7 @@ GameObject:
   - component: {fileID: 317396488}
   - component: {fileID: 317396493}
   - component: {fileID: 317396494}
+  - component: {fileID: 317396495}
   m_Layer: 6
   m_Name: LightBandit_4
   m_TagString: Untagged
@@ -1220,6 +1221,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53f4af91820fa674db8ce36ecd0fafa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &317396495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317396487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f149839121238d148aa5740b4b54210b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: -7.5
+  maxX: 7.5
 --- !u!1 &341106017
 GameObject:
   m_ObjectHideFlags: 0
